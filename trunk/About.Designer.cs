@@ -52,18 +52,18 @@ namespace SipekMobile
       // textBox1
       // 
       this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.textBox1.Location = new System.Drawing.Point(34, 126);
+      this.textBox1.Location = new System.Drawing.Point(34, 133);
       this.textBox1.Multiline = true;
       this.textBox1.Name = "textBox1";
       this.textBox1.ReadOnly = true;
       this.textBox1.Size = new System.Drawing.Size(177, 51);
       this.textBox1.TabIndex = 0;
-      this.textBox1.Text = "Sipek Mobile is a simple SIP client for Windows Mobile devices.";
+      this.textBox1.Text = "Sipek Mobile is a free&simple SIP client for Windows Mobile devices.";
       this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
       // label1
       // 
-      this.label1.Location = new System.Drawing.Point(29, 193);
+      this.label1.Location = new System.Drawing.Point(34, 202);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(182, 20);
       this.label1.Text = "Copyright (c) Sasa Coh 2009";
@@ -78,7 +78,7 @@ namespace SipekMobile
       // 
       // linkLabel1
       // 
-      this.linkLabel1.Location = new System.Drawing.Point(14, 226);
+      this.linkLabel1.Location = new System.Drawing.Point(14, 236);
       this.linkLabel1.Name = "linkLabel1";
       this.linkLabel1.Size = new System.Drawing.Size(223, 20);
       this.linkLabel1.TabIndex = 3;
@@ -89,14 +89,14 @@ namespace SipekMobile
       this.label2.Location = new System.Drawing.Point(14, 92);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(100, 20);
-      this.label2.Text = "GUI version 0.1";
+      this.label2.Text = "GUI version 0.1.4";
       // 
       // label3
       // 
       this.label3.Location = new System.Drawing.Point(137, 92);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(100, 20);
-      this.label3.Text = "SipekSdk 0.3.136";
+      this.label3.Text = "SipekSdk 0.3.112";
       // 
       // FormAbout
       // 
