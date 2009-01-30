@@ -36,8 +36,7 @@ namespace SipekMobile
       this.label1 = new System.Windows.Forms.Label();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-      this.label2 = new System.Windows.Forms.Label();
-      this.label3 = new System.Windows.Forms.Label();
+      this.textBoxCredits = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
       // 
       // mainMenu1
@@ -52,18 +51,18 @@ namespace SipekMobile
       // textBox1
       // 
       this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.textBox1.Location = new System.Drawing.Point(34, 133);
+      this.textBox1.Location = new System.Drawing.Point(34, 120);
       this.textBox1.Multiline = true;
       this.textBox1.Name = "textBox1";
       this.textBox1.ReadOnly = true;
       this.textBox1.Size = new System.Drawing.Size(177, 51);
       this.textBox1.TabIndex = 0;
-      this.textBox1.Text = "Sipek Mobile is a free&simple SIP client for Windows Mobile devices.";
+      this.textBox1.Text = "Sipek Mobile is a free & simple SIP client for Windows Mobile devices.";
       this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
       // label1
       // 
-      this.label1.Location = new System.Drawing.Point(34, 202);
+      this.label1.Location = new System.Drawing.Point(34, 235);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(182, 20);
       this.label1.Text = "Copyright (c) Sasa Coh 2009";
@@ -71,32 +70,29 @@ namespace SipekMobile
       // pictureBox1
       // 
       this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-      this.pictureBox1.Location = new System.Drawing.Point(80, 15);
+      this.pictureBox1.Location = new System.Drawing.Point(34, 15);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(69, 63);
+      this.pictureBox1.Size = new System.Drawing.Size(76, 78);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
       // 
       // linkLabel1
       // 
-      this.linkLabel1.Location = new System.Drawing.Point(14, 236);
+      this.linkLabel1.Location = new System.Drawing.Point(14, 190);
       this.linkLabel1.Name = "linkLabel1";
       this.linkLabel1.Size = new System.Drawing.Size(223, 20);
       this.linkLabel1.TabIndex = 3;
       this.linkLabel1.Text = "http://sites.google.com/site/sipekvoip/";
       // 
-      // label2
+      // textBoxCredits
       // 
-      this.label2.Location = new System.Drawing.Point(14, 92);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(100, 20);
-      this.label2.Text = "GUI version 0.1.4";
-      // 
-      // label3
-      // 
-      this.label3.Location = new System.Drawing.Point(137, 92);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(100, 20);
-      this.label3.Text = "SipekSdk 0.3.112";
+      this.textBoxCredits.BorderStyle = System.Windows.Forms.BorderStyle.None;
+      this.textBoxCredits.Location = new System.Drawing.Point(127, 15);
+      this.textBoxCredits.Multiline = true;
+      this.textBoxCredits.Name = "textBoxCredits";
+      this.textBoxCredits.Size = new System.Drawing.Size(110, 78);
+      this.textBoxCredits.TabIndex = 6;
+      this.textBoxCredits.Text = "Mobile GUI v0.1\r\nrev. 006\r\nSipekSdk v0.3\r\nrev. 112\r\npjsip.org v1.0";
+      this.textBoxCredits.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
       // 
       // FormAbout
       // 
@@ -104,8 +100,7 @@ namespace SipekMobile
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
       this.AutoScroll = true;
       this.ClientSize = new System.Drawing.Size(240, 268);
-      this.Controls.Add(this.label3);
-      this.Controls.Add(this.label2);
+      this.Controls.Add(this.textBoxCredits);
       this.Controls.Add(this.linkLabel1);
       this.Controls.Add(this.pictureBox1);
       this.Controls.Add(this.label1);
@@ -124,7 +119,6 @@ namespace SipekMobile
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.PictureBox pictureBox1;
     private System.Windows.Forms.LinkLabel linkLabel1;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.TextBox textBoxCredits;
   }
 }
