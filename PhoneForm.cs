@@ -54,7 +54,6 @@ namespace SipekMobile
       
       #endregion
 
-
       #region Properties
 
       // An application folder path
@@ -79,6 +78,49 @@ namespace SipekMobile
 
       #endregion
 
+      #region Audio Device (RIL)
+      //#define RIL_AUDIO_NONE                              (0x00000000)      // @constdefine No audio devices
+      //#define RIL_AUDIO_HANDSET                           (0x00000001)      // @constdefine Handset
+      //#define RIL_AUDIO_SPEAKERPHONE                      (0x00000002)      // @constdefine Speakerphone
+      //#define RIL_AUDIO_HEADSET                           (0x00000003)      // @constdefine Headset
+      //#define RIL_AUDIO_CARKIT                            (0x00000004)      // @constdefine Carkit
+      //#define RIL_PARAM_ADI_ALL                           (0x00000003) // @paramdefine
+      
+      public delegate void RILRESULTCALLBACK(int dwCode, IntPtr hrCmdID, IntPtr lpData, int cbData, int dwParam);
+      public delegate void RILNOTIFYCALLBACK(int dwCode, IntPtr lpData, int cbData, int dwParam);
+      public static IntPtr hRil;
+
+      [DllImport("ril.dll")]
+      private static extern IntPtr RIL_Initialize(int dwIndex, RILRESULTCALLBACK pfnResult, RILNOTIFYCALLBACK pfnNotify, int dwNotificationClasses, int dwParam, out IntPtr lphRil);
+
+      [DllImport("ril.dll")]
+      private static extern IntPtr RIL_Deinitialize(IntPtr hRil);
+
+      [DllImport("ril.dll")]
+      private static extern IntPtr RIL_SetAudioDevices(IntPtr hRil, RILAUDIODEVICEINFO lpAudioDeviceInfo);
+
+      [StructLayout(LayoutKind.Explicit)]
+      class RILAUDIODEVICEINFO 
+      {
+        [FieldOffset(0)]
+        public uint cbSize;
+        [FieldOffset(4)]
+        public uint dwParams;
+        [FieldOffset(8)]
+        public uint dwTxDevice;
+        [FieldOffset(12)]
+        public uint dwRxDevice;
+      } 
+
+      public static void f_notify(int dwCode, IntPtr lpData, int cbData, int dwParam)
+      { 
+      }
+
+      public static void f_result(int dwCode, IntPtr hrCmdID, IntPtr lpData, int cbData, int dwParam)
+      {
+      }
+      #endregion
+
       /// <summary>
       /// 
       /// </summary>
@@ -89,6 +131,25 @@ namespace SipekMobile
         //////////////////////////////////////////////////////////////////////////
         // Phone initialization
         //////////////////////////////////////////////////////////////////////////
+
+        #region Route Audio to the EARPIECE
+        IntPtr res;
+        RILRESULTCALLBACK result = new RILRESULTCALLBACK(f_result);
+        RILNOTIFYCALLBACK notify = new RILNOTIFYCALLBACK(f_notify);
+        res = RIL_Initialize(1, result, notify, (0x00010000 | 0x00020000 | 0x00080000), 0, out PhoneForm.hRil);
+        if (res != IntPtr.Zero)
+        {
+          return;
+        }
+
+        RILAUDIODEVICEINFO audioDeviceInfo = new RILAUDIODEVICEINFO();
+        audioDeviceInfo.cbSize = 16;
+        audioDeviceInfo.dwParams = 0x00000003; //RIL_PARAM_ADI_ALL;
+        audioDeviceInfo.dwRxDevice = 0x00000001;//RIL_AUDIO_HANDSET;
+        audioDeviceInfo.dwTxDevice = 0x00000001;//RIL_AUDIO_HANDSET;
+        res = RIL_SetAudioDevices(hRil, audioDeviceInfo);
+
+        #endregion
 
         // get the application path
         _appFolder = Path.GetDirectoryName(
@@ -328,8 +389,14 @@ namespace SipekMobile
 
       }
 
+      /// <summary>
+      /// Release the call
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
       private void releaseButton_Click(object sender, EventArgs e)
       {
+        // Find the selected row 
         if (listViewCallLines.SelectedIndices.Count > 0)
         {
           int index = listViewCallLines.SelectedIndices[0];
@@ -338,20 +405,22 @@ namespace SipekMobile
         }
       }
 
+      /// <summary>
+      /// Exit application
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
       private void exitButton_Click(object sender, EventArgs e)
       {
         Close();
-
-          //try
-          //{
-          //    Process.GetCurrentProcess().Kill();
-          //}
-          //catch (Exception o)
-          //{ }
       }
 
-
-      private void menuItem4_Click(object sender, EventArgs e)
+      /// <summary>
+      /// Open the settings dialog and reinitialize
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
+      private void menuItemSettings_Click(object sender, EventArgs e)
       {
         if (OpenSettingsDialog() == DialogResult.OK)
         {
@@ -360,16 +429,33 @@ namespace SipekMobile
         }
       }
 
+      /// <summary>
+      /// Handle shutdown...
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
       private void PhoneForm_Closing(object sender, CancelEventArgs e)
       {
         pjsipStackProxy.Instance.shutdown();
+        // deinitialize RIL 
+        RIL_Deinitialize(PhoneForm.hRil);
       }
 
-      private void menuItem2_Click(object sender, EventArgs e)
+      /// <summary>
+      /// Open About Form
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
+      private void menuItemAbout_Click(object sender, EventArgs e)
       {
         (new FormAbout()).ShowDialog();
       }
 
+      /// <summary>
+      /// Open the popup on selected call item
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
       private void contextMenuStripCalls_Popup(object sender, EventArgs e)
       {
         // Hide all items...
@@ -411,6 +497,11 @@ namespace SipekMobile
         }
       }
 
+      /// <summary>
+      /// Send the call hold or retrieve request
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
       private void holdRetrieveToolStripMenuItem_Click(object sender, EventArgs e)
       {
         // get call session
@@ -421,6 +512,32 @@ namespace SipekMobile
           CallManager.onUserHoldRetrieve(((CStateMachine)lvi.Tag).Session);
         }
       }
+      
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
+      private void checkBoxSpeakerPhone_CheckStateChanged(object sender, EventArgs e)
+      {
+        RILAUDIODEVICEINFO audioDeviceInfo = new RILAUDIODEVICEINFO();
+        audioDeviceInfo.cbSize = 16;
+        audioDeviceInfo.dwParams = 0x00000003; //RIL_PARAM_ADI_ALL;
+
+        if (checkBoxSpeakerPhone.Checked)
+        {
+          audioDeviceInfo.dwRxDevice = 0x00000000;//RIL_AUDIO_NONE;
+          audioDeviceInfo.dwTxDevice = 0x00000000;//RIL_AUDIO_NONE;
+        }
+        else
+        {
+          audioDeviceInfo.dwRxDevice = 0x00000001;//RIL_AUDIO_HANDSET;
+          audioDeviceInfo.dwTxDevice = 0x00000001;//RIL_AUDIO_HANDSET;
+        }
+        // Set audio device!!!
+        RIL_SetAudioDevices(hRil, audioDeviceInfo);
+      }     
+
       #endregion
 
 

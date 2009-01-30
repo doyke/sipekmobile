@@ -52,6 +52,7 @@
           this.label1 = new System.Windows.Forms.Label();
           this.pictureBox1 = new System.Windows.Forms.PictureBox();
           this.textBoxDial = new System.Windows.Forms.TextBox();
+          this.checkBoxSpeakerPhone = new System.Windows.Forms.CheckBox();
           this.SuspendLayout();
           // 
           // mainMenu1
@@ -68,12 +69,12 @@
           // menuItemSettings
           // 
           this.menuItemSettings.Text = "Settings";
-          this.menuItemSettings.Click += new System.EventHandler(this.menuItem4_Click);
+          this.menuItemSettings.Click += new System.EventHandler(this.menuItemSettings_Click);
           // 
           // menuItem2
           // 
           this.menuItem2.Text = "About";
-          this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
+          this.menuItem2.Click += new System.EventHandler(this.menuItemAbout_Click);
           // 
           // menuItem3
           // 
@@ -194,12 +195,22 @@
           this.textBoxDial.Size = new System.Drawing.Size(122, 21);
           this.textBoxDial.TabIndex = 46;
           // 
+          // checkBoxSpeakerPhone
+          // 
+          this.checkBoxSpeakerPhone.Location = new System.Drawing.Point(3, 156);
+          this.checkBoxSpeakerPhone.Name = "checkBoxSpeakerPhone";
+          this.checkBoxSpeakerPhone.Size = new System.Drawing.Size(121, 20);
+          this.checkBoxSpeakerPhone.TabIndex = 50;
+          this.checkBoxSpeakerPhone.Text = "SpeakerPhone";
+          this.checkBoxSpeakerPhone.CheckStateChanged += new System.EventHandler(this.checkBoxSpeakerPhone_CheckStateChanged);
+          // 
           // PhoneForm
           // 
           this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
           this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
           this.AutoScroll = true;
           this.ClientSize = new System.Drawing.Size(240, 268);
+          this.Controls.Add(this.checkBoxSpeakerPhone);
           this.Controls.Add(this.textBoxDial);
           this.Controls.Add(this.pictureBox1);
           this.Controls.Add(this.label1);
@@ -239,5 +250,6 @@
       private System.Windows.Forms.MenuItem ConferenceMenuItem;
       private System.Windows.Forms.MenuItem transferNumberMenuItem;
       private System.Windows.Forms.TextBox textBoxDial;
+      private System.Windows.Forms.CheckBox checkBoxSpeakerPhone;
     }
 }
