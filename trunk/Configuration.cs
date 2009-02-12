@@ -1,5 +1,5 @@
 /* 
- * Copyright (C) 2008 Sasa Coh <sasacoh@gmail.com>
+ * Copyright (C) 2009 Sasa Coh <sasacoh@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,13 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
  * 
  * 
- * @see http://sites.google.com/site/sipekvoip/
+ * A simple Windows Mobile SIP client.
  * 
+ * 
+ * @see http://sites.google.com/site/sipekvoip/ 
+ * @see http://sites.google.com/site/sipekvoip/sipek-mobile
  */
+
 
 using System;
 using System.Collections.Generic;
@@ -182,6 +186,9 @@ namespace SipekMobile
 
     [System.ComponentModel.DefaultValueAttribute("")]
     public string UserName;
+
+    [System.ComponentModel.DefaultValueAttribute(false)]
+    public bool EnablePresence;
   }
 
   #endregion 
@@ -203,6 +210,16 @@ namespace SipekMobile
         return ConfigurationManager.Instance.RawConfiguration;
       }
     }
+
+    #region Application specific settings
+    
+    public bool EnablePresence
+    {
+      get { return Configuration.EnablePresence; }
+      set { Configuration.EnablePresence = value; }
+    }
+    
+    #endregion
 
     #region IConfiguratorInterface Members
 
@@ -282,8 +299,8 @@ namespace SipekMobile
 
     public int SIPPort
     {
-      get { return ConfigurationManager.Instance.RawConfiguration.SIPPort; }
-      set { ConfigurationManager.Instance.RawConfiguration.SIPPort = value; }
+      get { return Configuration.SIPPort; }
+      set { Configuration.SIPPort = value; }
     }
 
     public List<IAccount> Accounts
@@ -306,6 +323,9 @@ namespace SipekMobile
     #endregion
   }
 
+  /// <summary>
+  /// 
+  /// </summary>
   class AccountConfigInterface : IAccount
   {
     PhoneConfig Configuration
@@ -386,6 +406,7 @@ namespace SipekMobile
 
     #endregion
   }
+  
   #endregion
 
 
