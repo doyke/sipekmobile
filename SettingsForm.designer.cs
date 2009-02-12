@@ -31,27 +31,32 @@
         {
           this.mainMenu1 = new System.Windows.Forms.MainMenu();
           this.menuItemExit = new System.Windows.Forms.MenuItem();
+          this.menuItem1 = new System.Windows.Forms.MenuItem();
           this.textBoxUserName = new System.Windows.Forms.TextBox();
           this.UserName = new System.Windows.Forms.Label();
           this.textBoxHostName = new System.Windows.Forms.TextBox();
           this.label1 = new System.Windows.Forms.Label();
           this.textBoxPW = new System.Windows.Forms.TextBox();
           this.label2 = new System.Windows.Forms.Label();
-          this.statusBar1 = new System.Windows.Forms.StatusBar();
           this.label3 = new System.Windows.Forms.Label();
           this.comboBoxTransportMode = new System.Windows.Forms.ComboBox();
-          this.button1 = new System.Windows.Forms.Button();
-          this.button2 = new System.Windows.Forms.Button();
+          this.checkBoxPresence = new System.Windows.Forms.CheckBox();
           this.SuspendLayout();
           // 
           // mainMenu1
           // 
           this.mainMenu1.MenuItems.Add(this.menuItemExit);
+          this.mainMenu1.MenuItems.Add(this.menuItem1);
           // 
           // menuItemExit
           // 
-          this.menuItemExit.Text = "Exit";
+          this.menuItemExit.Text = "Cancel";
           this.menuItemExit.Click += new System.EventHandler(this.exitButton_Click);
+          // 
+          // menuItem1
+          // 
+          this.menuItem1.Text = "OK";
+          this.menuItem1.Click += new System.EventHandler(this.buttonApply_Click);
           // 
           // textBoxUserName
           // 
@@ -95,12 +100,6 @@
           this.label2.Size = new System.Drawing.Size(73, 20);
           this.label2.Text = "Password";
           // 
-          // statusBar1
-          // 
-          this.statusBar1.Location = new System.Drawing.Point(0, 241);
-          this.statusBar1.Name = "statusBar1";
-          this.statusBar1.Size = new System.Drawing.Size(240, 22);
-          // 
           // label3
           // 
           this.label3.Location = new System.Drawing.Point(4, 95);
@@ -117,36 +116,23 @@
           this.comboBoxTransportMode.Size = new System.Drawing.Size(57, 22);
           this.comboBoxTransportMode.TabIndex = 17;
           // 
-          // button1
+          // checkBoxPresence
           // 
-          this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-          this.button1.Location = new System.Drawing.Point(160, 155);
-          this.button1.Name = "button1";
-          this.button1.Size = new System.Drawing.Size(72, 20);
-          this.button1.TabIndex = 23;
-          this.button1.Text = "OK";
-          this.button1.Click += new System.EventHandler(this.buttonApply_Click);
-          // 
-          // button2
-          // 
-          this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-          this.button2.Location = new System.Drawing.Point(3, 155);
-          this.button2.Name = "button2";
-          this.button2.Size = new System.Drawing.Size(72, 20);
-          this.button2.TabIndex = 24;
-          this.button2.Text = "Cancel";
+          this.checkBoxPresence.Location = new System.Drawing.Point(4, 164);
+          this.checkBoxPresence.Name = "checkBoxPresence";
+          this.checkBoxPresence.Size = new System.Drawing.Size(150, 20);
+          this.checkBoxPresence.TabIndex = 22;
+          this.checkBoxPresence.Text = "Enable Presence";
           // 
           // SettingsForm
           // 
           this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
           this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
           this.AutoScroll = true;
-          this.ClientSize = new System.Drawing.Size(240, 263);
-          this.Controls.Add(this.button2);
-          this.Controls.Add(this.button1);
+          this.ClientSize = new System.Drawing.Size(240, 268);
+          this.Controls.Add(this.checkBoxPresence);
           this.Controls.Add(this.comboBoxTransportMode);
           this.Controls.Add(this.label3);
-          this.Controls.Add(this.statusBar1);
           this.Controls.Add(this.textBoxPW);
           this.Controls.Add(this.textBoxHostName);
           this.Controls.Add(this.textBoxUserName);
@@ -169,11 +155,10 @@
         private System.Windows.Forms.TextBox textBoxPW;
       private System.Windows.Forms.Label label2;
       private System.Windows.Forms.MenuItem menuItemExit;
-      private System.Windows.Forms.StatusBar statusBar1;
       private System.Windows.Forms.Label label3;
       private System.Windows.Forms.ComboBox comboBoxTransportMode;
-      private System.Windows.Forms.Button button1;
-      private System.Windows.Forms.Button button2;
+      private System.Windows.Forms.MenuItem menuItem1;
+      private System.Windows.Forms.CheckBox checkBoxPresence;
     }
 }
 

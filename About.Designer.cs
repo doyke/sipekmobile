@@ -51,47 +51,48 @@ namespace SipekMobile
       // textBox1
       // 
       this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.textBox1.Location = new System.Drawing.Point(34, 120);
+      this.textBox1.Location = new System.Drawing.Point(34, 111);
       this.textBox1.Multiline = true;
       this.textBox1.Name = "textBox1";
-      this.textBox1.ReadOnly = true;
-      this.textBox1.Size = new System.Drawing.Size(177, 51);
+      this.textBox1.Size = new System.Drawing.Size(171, 51);
       this.textBox1.TabIndex = 0;
       this.textBox1.Text = "Sipek Mobile is a free & simple SIP client for Windows Mobile devices.";
       this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
       // label1
       // 
-      this.label1.Location = new System.Drawing.Point(34, 235);
+      this.label1.Location = new System.Drawing.Point(34, 208);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(182, 20);
+      this.label1.Size = new System.Drawing.Size(171, 20);
       this.label1.Text = "Copyright (c) Sasa Coh 2009";
       // 
       // pictureBox1
       // 
       this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-      this.pictureBox1.Location = new System.Drawing.Point(34, 15);
+      this.pictureBox1.Location = new System.Drawing.Point(83, 15);
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.Size = new System.Drawing.Size(76, 78);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
       // 
       // linkLabel1
       // 
-      this.linkLabel1.Location = new System.Drawing.Point(14, 190);
+      this.linkLabel1.Location = new System.Drawing.Point(3, 238);
       this.linkLabel1.Name = "linkLabel1";
-      this.linkLabel1.Size = new System.Drawing.Size(223, 20);
+      this.linkLabel1.Size = new System.Drawing.Size(234, 20);
       this.linkLabel1.TabIndex = 3;
       this.linkLabel1.Text = "http://sites.google.com/site/sipekvoip/";
+      this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
       // 
       // textBoxCredits
       // 
       this.textBoxCredits.BorderStyle = System.Windows.Forms.BorderStyle.None;
-      this.textBoxCredits.Location = new System.Drawing.Point(127, 15);
+      this.textBoxCredits.Font = new System.Drawing.Font("Tahoma", 7F, System.Drawing.FontStyle.Regular);
+      this.textBoxCredits.Location = new System.Drawing.Point(162, 15);
       this.textBoxCredits.Multiline = true;
       this.textBoxCredits.Name = "textBoxCredits";
-      this.textBoxCredits.Size = new System.Drawing.Size(110, 78);
+      this.textBoxCredits.Size = new System.Drawing.Size(75, 78);
       this.textBoxCredits.TabIndex = 6;
-      this.textBoxCredits.Text = "Mobile GUI v0.1\r\nrev. 006\r\nSipekSdk v0.3\r\nrev. 112\r\npjsip.org v1.0";
+      this.textBoxCredits.Text = "Mobile GUI v0.1\r\nrev. 007\r\nSipekSdk v0.3\r\nrev. 112\r\npjsip.org v1.0";
       this.textBoxCredits.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
       // 
       // FormAbout

@@ -1,5 +1,5 @@
 ﻿/* 
- * Copyright (C) 2008 Sasa Coh <sasacoh@gmail.com>
+ * Copyright (C) 2009 Sasa Coh <sasacoh@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,11 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
  * 
  * 
- * @see http://sites.google.com/site/sipekvoip/
+ * A simple Windows Mobile SIP client.
  * 
+ * 
+ * @see http://sites.google.com/site/sipekvoip/ 
+ * @see http://sites.google.com/site/sipekvoip/sipek-mobile
  */
 
 using System;
@@ -57,21 +60,16 @@ namespace SipekMobile
         textBoxHostName.Text = Config.Accounts[0].HostName;
         comboBoxTransportMode.SelectedIndex = (int)Config.Accounts[0].TransportMode;
 
+        checkBoxPresence.Checked = Config.EnablePresence;
       }
 
 
 
       private void exitButton_Click(object sender, EventArgs e)
       {
-        pjsipStackProxy.Instance.shutdown();
-        Close();
-          //try
-          //{
-          //    System.Diagnostics.Process.GetCurrentProcess().Kill();
-          //}
-          //catch (Exception j)
-          //{ }
+        this.DialogResult = DialogResult.Cancel;
 
+        Close();
       }
 
       private void buttonApply_Click(object sender, EventArgs e)
@@ -81,8 +79,12 @@ namespace SipekMobile
         Config.Accounts[0].Password = this.textBoxPW.Text;
         Config.Accounts[0].HostName = this.textBoxHostName.Text;
         Config.Accounts[0].TransportMode = (ETransportMode)comboBoxTransportMode.SelectedIndex;
+        
+        Config.EnablePresence = checkBoxPresence.Checked;
 
         Config.Save();
+
+        this.DialogResult = DialogResult.OK;
 
         Close();
       }
